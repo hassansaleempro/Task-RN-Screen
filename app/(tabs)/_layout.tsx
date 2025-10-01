@@ -1,25 +1,48 @@
 import { BlurView } from "expo-blur";
 import { Tabs } from "expo-router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import { HapticTab } from "@/components/haptic-tab";
 import { IconSymbol } from "@/components/ui/icon-symbol";
-import { Colors } from "@/constants/theme";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const [activeTab, setActiveTab] = useState("index");
+
+  // Ensure home tab is active by default when component mounts
+  useEffect(() => {
+    setActiveTab("/index");
+  }, []);
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: "#94979C",
+        tabBarInactiveTintColor: "#FFFFFF",
         headerShown: false,
-        tabBarButton: HapticTab,
+        tabBarButton: (props) => {
+          const routeName = props.to || props.href || props.children?.props?.to;
+          const isFocused = activeTab === routeName?.replace("/(tabs)/", "");
+
+          return (
+            <View
+              style={[styles.tabButton, isFocused && styles.activeTabButton]}
+            >
+              <HapticTab
+                {...props}
+                onPress={(ev) => {
+                  setActiveTab(routeName?.replace("/(tabs)/", "") || "/index");
+                  props.onPress?.(ev);
+                }}
+              />
+            </View>
+          );
+        },
         tabBarStyle: {
           position: "absolute",
-          height: 58,
+          height: 67,
           marginHorizontal: 20,
           marginBottom: 40,
           borderRadius: 60,
@@ -59,17 +82,12 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Home",
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="house.fill" color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: "Explore",
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <IconSymbol
+              size={20}
+              name="house.fill"
+              color={focused ? "#94979C" : "#FFFFFF"}
+            />
           ),
         }}
       />
@@ -77,8 +95,25 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: "Profile",
-          tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="person.fill" color={color} />
+          tabBarIcon: ({ color, focused }) => (
+            <IconSymbol
+              size={20}
+              name="person.fill"
+              color={focused ? "#94979C" : "#FFFFFF"}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="explore"
+        options={{
+          title: "Explore",
+          tabBarIcon: ({ color, focused }) => (
+            <IconSymbol
+              size={20}
+              name="paperplane.fill"
+              color={focused ? "#94979C" : "#FFFFFF"}
+            />
           ),
         }}
       />
@@ -99,5 +134,17 @@ const styles = StyleSheet.create({
     backgroundColor: "#222D313A",
     padding: 0,
     margin: 0,
+  },
+  tabButton: {
+    flex: 1,
+    paddingHorizontal: 30,
+    borderRadius: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 5,
+  },
+  activeTabButton: {
+    backgroundColor: "rgba(82, 82, 82, 0.325)",
+    marginVertical: 5,
   },
 });
