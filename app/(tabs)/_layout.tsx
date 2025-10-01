@@ -1,5 +1,7 @@
+import { BlurView } from "expo-blur";
 import { Tabs } from "expo-router";
 import React from "react";
+import { StyleSheet, View } from "react-native";
 
 import { HapticTab } from "@/components/haptic-tab";
 import { IconSymbol } from "@/components/ui/icon-symbol";
@@ -15,6 +17,42 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         headerShown: false,
         tabBarButton: HapticTab,
+        tabBarStyle: {
+          position: "absolute",
+          height: 58,
+          marginHorizontal: 20,
+          marginBottom: 40,
+          borderRadius: 60,
+          elevation: 0,
+          shadowOpacity: 0,
+          justifyContent: "center",
+          alignItems: "center",
+          paddingBottom: 0,
+          paddingTop: 0,
+          paddingVertical: 0,
+          paddingHorizontal: 0,
+        },
+        tabBarItemStyle: {
+          justifyContent: "center",
+          alignItems: "center",
+          flex: 1,
+          padding: 0,
+          margin: 0,
+        },
+        tabBarLabelStyle: {
+          margin: 0,
+          padding: 0,
+          textAlign: "center",
+        },
+        tabBarIconStyle: {
+          margin: 0,
+          padding: 0,
+        },
+        tabBarBackground: () => (
+          <View style={styles.tabBarBackground}>
+            <BlurView intensity={30} style={styles.blurView} />
+          </View>
+        ),
       }}
     >
       <Tabs.Screen
@@ -35,6 +73,31 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="person.fill" color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  tabBarBackground: {
+    flex: 1,
+    borderRadius: 60,
+    overflow: "hidden",
+    padding: 0,
+    margin: 0,
+  },
+  blurView: {
+    flex: 1,
+    backgroundColor: "#222D313A",
+    padding: 0,
+    margin: 0,
+  },
+});
