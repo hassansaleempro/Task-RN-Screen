@@ -4,6 +4,7 @@ import { router } from "expo-router";
 import React from "react";
 import {
   Dimensions,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -22,6 +23,8 @@ export default function InvestmentScreen() {
       end={{ x: 0.5, y: 0.4 }}
       style={styles.container}
     >
+      <StatusBar barStyle="light-content" />
+
       <SafeAreaView style={styles.safeArea}>
         {/* Progress Indicators */}
         <View style={styles.progressContainer}>

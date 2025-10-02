@@ -46,6 +46,7 @@ export default function TabLayout() {
           marginHorizontal: 20,
           marginBottom: 40,
           borderRadius: 60,
+          borderTopWidth: 0,
           elevation: 0,
           shadowOpacity: 0,
           justifyContent: "center",
