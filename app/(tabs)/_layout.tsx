@@ -82,7 +82,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: "المحفظة",
           tabBarIcon: ({ color, focused }) => (
             <IconSymbol
               size={20}
@@ -95,7 +95,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: "Profile",
+          title: "استثماراتي",
           tabBarIcon: ({ color, focused }) => (
             <IconSymbol
               size={20}
@@ -108,7 +108,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="explore"
         options={{
-          title: "Explore",
+          title: "توت",
           tabBarIcon: ({ color, focused }) => (
             <IconSymbol
               size={20}
