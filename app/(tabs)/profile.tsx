@@ -113,7 +113,7 @@ export default function ProfileScreen() {
                   source={require("../../assets/images/SAR.png")}
                   style={styles.sarImageLarge}
                   resizeMode="contain"
-                />{" "}
+                />
               </View>
               <Text style={styles.opportunitiesText}>في ٧ فرص استثمارية</Text>
 
@@ -232,7 +232,7 @@ export default function ProfileScreen() {
                         source={require("../../assets/images/SAR.png")}
                         style={styles.sarImage}
                         resizeMode="contain"
-                      />{" "}
+                      />
                     </View>
                     <View
                       style={[
