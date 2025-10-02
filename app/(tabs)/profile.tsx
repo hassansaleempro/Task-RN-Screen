@@ -1,3 +1,4 @@
+import { Fonts } from "@/constants/fonts";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
@@ -108,7 +109,11 @@ export default function ProfileScreen() {
               <Text style={styles.summaryTitle}>مستثمر حالياً</Text>
               <View style={styles.amountContainer}>
                 <Text style={styles.amountText}>2,123.09</Text>
-                <Text style={styles.currencySymbol}>﷼</Text>
+                <Image
+                  source={require("../../assets/images/SAR.png")}
+                  style={styles.sarImageLarge}
+                  resizeMode="contain"
+                />{" "}
               </View>
               <Text style={styles.opportunitiesText}>في ٧ فرص استثمارية</Text>
 
@@ -183,7 +188,12 @@ export default function ProfileScreen() {
                     ]}
                   >
                     <Text style={styles.pendingAmount}>250.00</Text>
-                    <Text style={styles.pendingAmount}>﷼</Text>
+                    {/* <Text style={styles.pendingAmount}>﷼</Text> */}
+                    <Image
+                      source={require("../../assets/images/SAR.png")}
+                      style={styles.sarImage}
+                      resizeMode="contain"
+                    />
                   </View>
                   <Text style={styles.pendingDate}>ايداع في 12 يناير 2025</Text>
                 </View>
@@ -218,7 +228,11 @@ export default function ProfileScreen() {
                       <Text style={styles.pendingAmount}>
                         {investment.amount}
                       </Text>
-                      <Text style={styles.pendingAmount}>﷼</Text>
+                      <Image
+                        source={require("../../assets/images/SAR.png")}
+                        style={styles.sarImage}
+                        resizeMode="contain"
+                      />{" "}
                     </View>
                     <View
                       style={[
@@ -298,6 +312,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 28,
+    fontFamily: Fonts.suisse.bold,
     fontWeight: "bold",
     textAlign: "center",
     color: "white",
@@ -336,6 +351,7 @@ const styles = StyleSheet.create({
   },
   summaryTitle: {
     fontSize: 18,
+    fontFamily: Fonts.suisse.regular,
     fontWeight: "600",
     marginBottom: 10,
     alignSelf: "center",
@@ -343,25 +359,28 @@ const styles = StyleSheet.create({
   },
   amountContainer: {
     flexDirection: "row",
-    alignItems: "baseline",
+    alignItems: "center",
     marginBottom: 8,
     alignSelf: "center",
+    gap: 4,
   },
   currencySymbol: {
     color: "#D6C0A6",
     fontSize: 24,
     marginRight: 4,
+    fontFamily: Fonts.suisse.regular,
   },
   amountText: {
     color: "#D6C0A6",
     fontSize: 32,
-    fontWeight: "bold",
+    fontFamily: Fonts.suisse.regular,
   },
   opportunitiesText: {
     color: "white",
     fontSize: 14,
     marginBottom: 20,
     alignSelf: "center",
+    fontFamily: Fonts.suisse.regular,
   },
   profitContainer: {
     marginBottom: 40,
@@ -380,6 +399,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 14,
     textAlign: "left",
+    fontFamily: Fonts.suisse.regular,
   },
   profitValue: {
     flexDirection: "row",
@@ -394,6 +414,7 @@ const styles = StyleSheet.create({
     color: "#4CAF50",
     fontSize: 14,
     fontWeight: "600",
+    fontFamily: Fonts.suisse.regular,
   },
   actionButtons: {
     flexDirection: "row",
@@ -419,6 +440,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 12,
     textAlign: "center",
+    fontFamily: Fonts.suisse.regular,
   },
   section: {
     marginBottom: 30,
@@ -440,16 +462,19 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     color: "white",
     textAlign: "left",
+    fontFamily: Fonts.suisse.regular,
   },
   pendingCard: {},
   pendingAmount: {
     color: "#D6C0A6",
     fontSize: 28,
     fontWeight: "bold",
+    fontFamily: Fonts.suisse.regular,
   },
   pendingDate: {
     color: "#98B5C6",
     fontSize: 18,
+    fontFamily: Fonts.suisse.regular,
   },
   pendingButton: {
     backgroundColor: "#062C41",
@@ -465,6 +490,7 @@ const styles = StyleSheet.create({
   pendingButtonText: {
     color: "#7CD4FC",
     fontSize: 16,
+    fontFamily: Fonts.suisse.regular,
   },
   pendingButtonRight: {
     flexDirection: "row",
@@ -475,10 +501,12 @@ const styles = StyleSheet.create({
   pendingButtonView: {
     color: "white",
     fontSize: 18,
+    fontFamily: Fonts.suisse.regular,
   },
   arrowIcon: {
     color: "#4A90E2",
     fontSize: 16,
+    fontFamily: Fonts.suisse.regular,
   },
   investmentCard: {
     backgroundColor: "#223544",
@@ -499,6 +527,7 @@ const styles = StyleSheet.create({
     color: "#B0B0B0",
     fontSize: 18,
     fontWeight: "bold",
+    fontFamily: Fonts.suisse.regular,
   },
   statusBadge: {
     paddingHorizontal: 12,
@@ -510,17 +539,20 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
     fontWeight: "600",
+    fontFamily: Fonts.suisse.regular,
   },
   originalDeposit: {
     color: "white",
     fontSize: 14,
     marginBottom: 8,
+    fontFamily: Fonts.suisse.regular,
   },
   profits: {
     color: "#4CAF50",
     fontSize: 14,
     fontWeight: "600",
     marginBottom: 12,
+    fontFamily: Fonts.suisse.regular,
   },
   progressBar: {
     height: 8,
@@ -537,10 +569,20 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 18,
     marginBottom: 4,
+    fontFamily: Fonts.suisse.regular,
   },
   investmentDate: {
     color: "white",
     fontSize: 12,
     opacity: 0.7,
+    fontFamily: Fonts.suisse.regular,
+  },
+  sarImage: {
+    width: 19,
+    height: 22,
+  },
+  sarImageLarge: {
+    width: 27,
+    height: 30,
   },
 });

@@ -1,3 +1,4 @@
+import { Fonts } from "@/constants/fonts";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
   ctaText: {
     color: "#OF2232",
     fontSize: 18,
-    fontWeight: "bold",
+    fontFamily: Fonts.suisse.regular,
   },
   footer: {
     paddingHorizontal: 20,
@@ -164,9 +165,10 @@ const styles = StyleSheet.create({
     color: "#98B5C9",
     fontSize: 16,
     textAlign: "center",
-    lineHeight: 18,
+    fontFamily: Fonts.suisse.regular,
   },
   linkText: {
     textDecorationLine: "underline",
+    fontFamily: Fonts.suisse.regular,
   },
 });
