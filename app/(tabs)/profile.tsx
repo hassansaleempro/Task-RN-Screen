@@ -508,7 +508,7 @@ const styles = StyleSheet.create({
   },
   statusText: {
     color: "white",
-    fontSize: 12,
+    fontSize: 16,
     fontWeight: "600",
   },
   originalDeposit: {

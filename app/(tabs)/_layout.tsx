@@ -132,7 +132,8 @@ const styles = StyleSheet.create({
   },
   blurView: {
     flex: 1,
-    backgroundColor: "#222D313A",
+    // backgroundColor: "#222D313A",
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
     padding: 0,
     margin: 0,
   },
