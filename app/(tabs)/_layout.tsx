@@ -1,10 +1,10 @@
 import { BlurView } from "expo-blur";
 import { Tabs } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 
 import { HapticTab } from "@/components/haptic-tab";
-import { IconSymbol } from "@/components/ui/icon-symbol";
+import { getHeightPixel, getWidthPixel } from "@/constants/AppConstants";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 
 export default function TabLayout() {
@@ -84,11 +84,19 @@ export default function TabLayout() {
         options={{
           title: "المحفظة",
           tabBarIcon: ({ color, focused }) => (
-            <IconSymbol
-              size={20}
-              name="house.fill"
-              color={focused ? "#94979C" : "#FFFFFF"}
+            <Image
+              source={require("../../assets/images/tab_1.png")}
+              style={[
+                styles.tabIcon,
+                { tintColor: focused ? "#94979C" : "#FFFFFF" },
+              ]}
+              resizeMode="contain"
             />
+            // <IconSymbol
+            //   size={20}
+            //   name="house.fill"
+            //   color={focused ? "#94979C" : "#FFFFFF"}
+            // />
           ),
         }}
       />
@@ -97,11 +105,19 @@ export default function TabLayout() {
         options={{
           title: "استثماراتي",
           tabBarIcon: ({ color, focused }) => (
-            <IconSymbol
-              size={20}
-              name="person.fill"
-              color={focused ? "#94979C" : "#FFFFFF"}
+            <Image
+              source={require("../../assets/images/tab_2.png")}
+              style={[
+                styles.tabIcon,
+                { tintColor: focused ? "#94979C" : "#FFFFFF" },
+              ]}
+              resizeMode="contain"
             />
+            // <IconSymbol
+            //   size={20}
+            //   name="person.fill"
+            //   color={focused ? "#94979C" : "#FFFFFF"}
+            // />
           ),
         }}
       />
@@ -110,11 +126,19 @@ export default function TabLayout() {
         options={{
           title: "توت",
           tabBarIcon: ({ color, focused }) => (
-            <IconSymbol
-              size={20}
-              name="paperplane.fill"
-              color={focused ? "#94979C" : "#FFFFFF"}
+            <Image
+              source={require("../../assets/images/tab_3.png")}
+              style={[
+                styles.tabIcon,
+                { tintColor: focused ? "#94979C" : "#FFFFFF" },
+              ]}
+              resizeMode="contain"
             />
+            // <IconSymbol
+            //   size={20}
+            //   name="paperplane.fill"
+            // color={focused ? "#94979C" : "#FFFFFF"}
+            // />
           ),
         }}
       />
@@ -148,5 +172,9 @@ const styles = StyleSheet.create({
   activeTabButton: {
     backgroundColor: "rgba(82, 82, 82, 0.325)",
     marginVertical: 5,
+  },
+  tabIcon: {
+    width: getWidthPixel(24),
+    height: getHeightPixel(24),
   },
 });

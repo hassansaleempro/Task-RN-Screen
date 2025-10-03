@@ -1,3 +1,4 @@
+import { getHeightPixel, getWidthPixel } from "@/constants/AppConstants";
 import { Fonts } from "@/constants/fonts";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
@@ -96,13 +97,13 @@ const styles = StyleSheet.create({
   },
   progressContainer: {
     flexDirection: "row",
-    paddingHorizontal: 20,
-    paddingTop: 20,
-    marginBottom: 30,
-    gap: 8,
+    paddingHorizontal: getWidthPixel(20),
+    paddingTop: getHeightPixel(20),
+    marginBottom: getHeightPixel(30),
+    gap: getWidthPixel(8),
   },
   progressLine: {
-    height: 4,
+    height: getHeightPixel(4),
     flex: 1,
   },
   progressLineActive: {
@@ -112,18 +113,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#D4EA6A",
   },
   progressLineFirst: {
-    borderTopLeftRadius: 2,
-    borderBottomLeftRadius: 2,
+    borderTopLeftRadius: getWidthPixel(2),
+    borderBottomLeftRadius: getWidthPixel(2),
   },
   progressLineLast: {
-    borderTopRightRadius: 2,
-    borderBottomRightRadius: 2,
+    borderTopRightRadius: getWidthPixel(2),
+    borderBottomRightRadius: getWidthPixel(2),
   },
   bannerContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 40,
+    marginBottom: getHeightPixel(40),
     zIndex: 2,
   },
   bannerImage: {
@@ -133,37 +134,37 @@ const styles = StyleSheet.create({
   },
   centerView: {
     width: "100%",
-    height: 300,
+    height: getHeightPixel(300),
     top: height * 0.55,
     alignSelf: "center",
     position: "absolute",
   },
   ctaButton: {
     backgroundColor: "#C4E429",
-    marginHorizontal: 20,
-    height: 56,
+    marginHorizontal: getWidthPixel(20),
+    height: getHeightPixel(56),
     justifyContent: "center",
-    borderRadius: 24,
+    borderRadius: getWidthPixel(24),
     alignItems: "center",
-    marginBottom: 20,
+    marginBottom: getHeightPixel(20),
     shadowColor: "#A8FF33",
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: getHeightPixel(4) },
     shadowOpacity: 0.3,
-    shadowRadius: 8,
+    shadowRadius: getWidthPixel(8),
     elevation: 8,
   },
   ctaText: {
     color: "#OF2232",
-    fontSize: 18,
+    fontSize: getWidthPixel(18),
     fontFamily: Fonts.suisse.regular,
   },
   footer: {
-    paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingHorizontal: getWidthPixel(20),
+    paddingBottom: getHeightPixel(20),
   },
   footerText: {
     color: "#98B5C9",
-    fontSize: 16,
+    fontSize: getWidthPixel(16),
     textAlign: "center",
     fontFamily: Fonts.suisse.regular,
   },
