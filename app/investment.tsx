@@ -1,5 +1,8 @@
-import { getHeightPixel, getWidthPixel } from "@/constants/AppConstants";
-import { Fonts } from "@/constants/fonts";
+import {
+  getHeightPixel,
+  getWidthPixel,
+  normalized,
+} from "@/constants/AppConstants";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
@@ -155,8 +158,8 @@ const styles = StyleSheet.create({
   },
   ctaText: {
     color: "#OF2232",
-    fontSize: getWidthPixel(18),
-    fontFamily: Fonts.suisse.regular,
+    fontSize: normalized(18),
+    // fontFamily: Fonts.suisse.regular,
   },
   footer: {
     paddingHorizontal: getWidthPixel(20),
@@ -164,12 +167,12 @@ const styles = StyleSheet.create({
   },
   footerText: {
     color: "#98B5C9",
-    fontSize: getWidthPixel(16),
+    fontSize: normalized(16),
     textAlign: "center",
-    fontFamily: Fonts.suisse.regular,
+    // fontFamily: Fonts.suisse.regular,
   },
   linkText: {
     textDecorationLine: "underline",
-    fontFamily: Fonts.suisse.regular,
+    // fontFamily: Fonts.suisse.regular,
   },
 });

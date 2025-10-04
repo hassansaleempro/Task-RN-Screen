@@ -4,7 +4,11 @@ import React, { useEffect, useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
 
 import { HapticTab } from "@/components/haptic-tab";
-import { getHeightPixel, getWidthPixel } from "@/constants/AppConstants";
+import {
+  getHeightPixel,
+  getWidthPixel,
+  normalized,
+} from "@/constants/AppConstants";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 
 export default function TabLayout() {
@@ -67,6 +71,7 @@ export default function TabLayout() {
           margin: 0,
           padding: 0,
           textAlign: "center",
+          fontSize: normalized(14),
         },
         tabBarIconStyle: {
           margin: 0,

@@ -1,5 +1,8 @@
-import { getHeightPixel, getWidthPixel } from "@/constants/AppConstants";
-import { Fonts } from "@/constants/fonts";
+import {
+  getHeightPixel,
+  getWidthPixel,
+  normalized,
+} from "@/constants/AppConstants";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
@@ -27,6 +30,7 @@ export default function ProfileScreen() {
       status: "جاري",
       statusColor: "#053321",
       borderColor: "#085D3A",
+      textColor: "#75E0A7",
     },
     {
       id: 2,
@@ -39,6 +43,7 @@ export default function ProfileScreen() {
       status: "جاري",
       statusColor: "#053321",
       borderColor: "#085D3A",
+      textColor: "#75E0A7",
     },
     {
       id: 3,
@@ -51,6 +56,7 @@ export default function ProfileScreen() {
       status: "جاري",
       statusColor: "#053321",
       borderColor: "#085D3A",
+      textColor: "#75E0A7",
     },
     {
       id: 4,
@@ -63,6 +69,7 @@ export default function ProfileScreen() {
       status: "جاري",
       statusColor: "#053321",
       borderColor: "#085D3A",
+      textColor: "#75E0A7",
     },
     {
       id: 5,
@@ -75,6 +82,7 @@ export default function ProfileScreen() {
       status: "متعثر",
       statusColor: "#55160C",
       borderColor: "#912018",
+      textColor: "#FDA29B",
     },
   ];
 
@@ -109,7 +117,11 @@ export default function ProfileScreen() {
             <View style={styles.summaryCard}>
               <Text style={styles.summaryTitle}>مستثمر حالياً</Text>
               <View style={styles.amountContainer}>
-                <Text style={styles.amountText}>2,123.09</Text>
+                <Text
+                  style={[styles.amountText, { marginLeft: getWidthPixel(5) }]}
+                >
+                  2,123.09
+                </Text>
                 <Image
                   source={require("../../assets/images/SAR.png")}
                   style={styles.sarImageLarge}
@@ -124,14 +136,26 @@ export default function ProfileScreen() {
                   <Text style={styles.profitLabel}>اجمالي الأرباح</Text>
                   <View style={styles.profitValue}>
                     <Text style={styles.plusIcon}>+</Text>
-                    <Text style={styles.profitAmount}>﷼ 500.00 (%25)</Text>
+                    <Text style={styles.profitAmount}>500.00</Text>
+                    <Image
+                      source={require("../../assets/images/SAR_green.png")}
+                      style={styles.sarImageSmall}
+                      resizeMode="contain"
+                    />
+                    <Text style={styles.profitAmountPercentage}>(%25)</Text>
                   </View>
                 </View>
                 <View style={styles.profitRow}>
                   <Text style={styles.profitLabel}>أرباح هذا الشهر</Text>
                   <View style={styles.profitValue}>
                     <Text style={styles.plusIcon}>+</Text>
-                    <Text style={styles.profitAmount}>﷼ 120.5 (%1.2)</Text>
+                    <Text style={styles.profitAmount}>120.5</Text>
+                    <Image
+                      source={require("../../assets/images/SAR_green.png")}
+                      style={styles.sarImageSmall}
+                      resizeMode="contain"
+                    />
+                    <Text style={styles.profitAmountPercentage}>(%1.2)</Text>
                   </View>
                 </View>
               </View>
@@ -177,6 +201,9 @@ export default function ProfileScreen() {
               </View>
             </View>
 
+            {/* Divider */}
+            <View style={styles.divider} />
+
             {/* Pending Investment */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>في انتظار الاستثمار</Text>
@@ -189,7 +216,6 @@ export default function ProfileScreen() {
                     ]}
                   >
                     <Text style={styles.pendingAmount}>250.00</Text>
-                    {/* <Text style={styles.pendingAmount}>﷼</Text> */}
                     <Image
                       source={require("../../assets/images/SAR.png")}
                       style={styles.sarImage}
@@ -246,7 +272,14 @@ export default function ProfileScreen() {
                         },
                       ]}
                     >
-                      <Text style={styles.statusText}>{investment.status}</Text>
+                      <Text
+                        style={[
+                          styles.statusText,
+                          { color: investment.textColor },
+                        ]}
+                      >
+                        {investment.status}
+                      </Text>
                     </View>
                   </View>
                   <View
@@ -255,21 +288,42 @@ export default function ProfileScreen() {
                       justifyContent: "space-between",
                     }}
                   >
-                    <Text style={styles.pendingDate}>
-                      من أصل ايداع ﷼ {investment.originalDeposit}
-                    </Text>
+                    <View style={styles.pendingButtonRight}>
+                      <Text style={styles.pendingDate}>
+                        من أصل ايداع {investment.originalDeposit}
+                      </Text>
+                      <Image
+                        source={require("../../assets/images/SAR_gray.png")}
+                        style={styles.sarImageVerySmall}
+                        resizeMode="contain"
+                      />
+                    </View>
                     <View style={styles.pendingButtonRight}>
                       <Text
-                        style={[styles.pendingButtonView, { color: "#47CD89" }]}
+                        style={[
+                          styles.pendingButtonView,
+                          {
+                            color: investment.id === 5 ? "white" : "#47CD89",
+                          },
+                        ]}
                       >
-                        {" "}
-                        أرباح ﷼ {investment.profits}
+                        أرباح {investment.profits}
                       </Text>
-                      <Ionicons name="chevron-back" size={16} color="#47CD89" />
+                      <Image
+                        source={
+                          investment.id === 5
+                            ? require("../../assets/images/SAR_gray.png")
+                            : require("../../assets/images/SAR_green.png")
+                        }
+                        style={styles.sarImageVerySmall}
+                        resizeMode="contain"
+                      />
+                      <Ionicons
+                        name="chevron-back"
+                        size={16}
+                        color={investment.id === 5 ? "white" : "#47CD89"}
+                      />
                     </View>
-                    {/* <Text style={styles.pendingDate}>
-                      أرباح ﷼ {investment.profits}
-                    </Text> */}
                   </View>
                   <View style={styles.progressBar}>
                     <View
@@ -310,13 +364,11 @@ const styles = StyleSheet.create({
   },
   timeText: {
     color: "white",
-    fontSize: getWidthPixel(16),
-    fontWeight: "600",
+    fontSize: normalized(16),
   },
   title: {
-    fontSize: getWidthPixel(28),
-    fontFamily: Fonts.suisse.bold,
-    fontWeight: "bold",
+    fontSize: normalized(28),
+    // fontFamily: Fonts.suisse.bold,
     textAlign: "center",
     color: "white",
   },
@@ -349,13 +401,12 @@ const styles = StyleSheet.create({
   },
   summaryCard: {
     padding: getWidthPixel(20),
-    marginBottom: getHeightPixel(20),
+    marginVertical: getHeightPixel(20),
     direction: "rtl",
   },
   summaryTitle: {
-    fontSize: getWidthPixel(18),
-    fontFamily: Fonts.suisse.regular,
-    fontWeight: "600",
+    fontSize: normalized(18),
+    // fontFamily: Fonts.suisse.regular,
     marginBottom: getHeightPixel(10),
     alignSelf: "center",
     color: "#F7F7F7",
@@ -363,27 +414,27 @@ const styles = StyleSheet.create({
   amountContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: getHeightPixel(8),
+    marginBottom: getHeightPixel(3),
     alignSelf: "center",
-    gap: getWidthPixel(4),
   },
   currencySymbol: {
     color: "#D6C0A6",
-    fontSize: getWidthPixel(24),
+    fontSize: normalized(24),
     marginRight: getWidthPixel(4),
-    fontFamily: Fonts.suisse.regular,
+    // fontFamily: Fonts.suisse.regular,
   },
   amountText: {
     color: "#D6C0A6",
-    fontSize: getWidthPixel(32),
-    fontFamily: Fonts.suisse.regular,
+    fontSize: normalized(32),
+    // fontFamily: Fonts.suisse.regular,
   },
   opportunitiesText: {
     color: "white",
-    fontSize: getWidthPixel(14),
+    fontSize: normalized(16),
     marginBottom: getHeightPixel(20),
     alignSelf: "center",
-    fontFamily: Fonts.suisse.regular,
+    marginTop: getHeightPixel(5),
+    // fontFamily: Fonts.suisse.regular,
   },
   profitContainer: {
     marginBottom: getHeightPixel(40),
@@ -395,29 +446,35 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     flex: 1,
     paddingRight: getWidthPixel(12),
-    borderRightWidth: getWidthPixel(1),
-    borderColor: "#CECFD2",
+    borderRightWidth: getWidthPixel(0.5),
+    borderColor: "#CECFD266",
   },
   profitLabel: {
     color: "white",
-    fontSize: getWidthPixel(14),
+    fontSize: normalized(16),
     textAlign: "left",
-    fontFamily: Fonts.suisse.regular,
+    // fontFamily: Fonts.suisse.regular,
   },
   profitValue: {
     flexDirection: "row",
     alignItems: "center",
+    marginTop: getHeightPixel(5),
   },
   plusIcon: {
     color: "#4CAF50",
-    fontSize: getWidthPixel(16),
-    marginRight: getWidthPixel(4),
+    fontSize: normalized(16),
   },
   profitAmount: {
     color: "#4CAF50",
-    fontSize: getWidthPixel(14),
-    fontWeight: "600",
-    fontFamily: Fonts.suisse.regular,
+    fontSize: normalized(16),
+    // fontFamily: Fonts.suisse.regular,
+    marginRight: getWidthPixel(4),
+  },
+  profitAmountPercentage: {
+    color: "#CECFD2",
+    fontSize: normalized(16),
+    marginRight: getWidthPixel(4),
+    // fontFamily: Fonts.suisse.regular,
   },
   actionButtons: {
     flexDirection: "row",
@@ -441,9 +498,15 @@ const styles = StyleSheet.create({
   },
   actionLabel: {
     color: "white",
-    fontSize: getWidthPixel(12),
+    fontSize: normalized(16),
     textAlign: "center",
-    fontFamily: Fonts.suisse.regular,
+    // fontFamily: Fonts.suisse.regular,
+  },
+  divider: {
+    height: getHeightPixel(1),
+    backgroundColor: "#FFFFFF1A",
+    marginBottom: getHeightPixel(30),
+    marginHorizontal: getWidthPixel(10),
   },
   section: {
     marginBottom: getHeightPixel(30),
@@ -453,37 +516,36 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#223544",
+    backgroundColor: "#22354488",
     borderWidth: getWidthPixel(1),
     borderColor: "#FFFFFF1A",
     borderRadius: getWidthPixel(10),
     padding: getWidthPixel(10),
   },
   sectionTitle: {
-    fontSize: getWidthPixel(18),
-    fontWeight: "600",
+    fontSize: normalized(18),
     marginBottom: getHeightPixel(15),
     color: "white",
     textAlign: "left",
-    fontFamily: Fonts.suisse.regular,
+    // fontFamily: Fonts.suisse.regular,
   },
   pendingCard: {},
   pendingAmount: {
     color: "#D6C0A6",
-    fontSize: getWidthPixel(28),
-    fontWeight: "bold",
-    fontFamily: Fonts.suisse.regular,
+    fontSize: normalized(28),
+    // fontFamily: Fonts.suisse.regular,
   },
   pendingDate: {
     color: "#98B5C6",
-    fontSize: getWidthPixel(18),
-    fontFamily: Fonts.suisse.regular,
+    fontSize: normalized(16),
+    // fontFamily: Fonts.suisse.regular,
   },
   pendingButton: {
     backgroundColor: "#062C41",
-    borderRadius: getWidthPixel(12),
-    padding: getWidthPixel(5),
-    marginBottom: getHeightPixel(5),
+    borderRadius: getWidthPixel(20),
+    paddingVertical: getWidthPixel(5),
+    paddingHorizontal: getWidthPixel(10),
+    // marginBottom: getHeightPixel(3),
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
@@ -492,8 +554,8 @@ const styles = StyleSheet.create({
   },
   pendingButtonText: {
     color: "#7CD4FC",
-    fontSize: getWidthPixel(16),
-    fontFamily: Fonts.suisse.regular,
+    fontSize: normalized(16),
+    // fontFamily: Fonts.suisse.regular,
   },
   pendingButtonRight: {
     flexDirection: "row",
@@ -503,20 +565,20 @@ const styles = StyleSheet.create({
   },
   pendingButtonView: {
     color: "white",
-    fontSize: getWidthPixel(18),
-    fontFamily: Fonts.suisse.regular,
+    fontSize: normalized(16),
+    // fontFamily: Fonts.suisse.regular,
   },
   arrowIcon: {
     color: "#4A90E2",
-    fontSize: getWidthPixel(16),
-    fontFamily: Fonts.suisse.regular,
+    fontSize: normalized(16),
+    // fontFamily: Fonts.suisse.regular,
   },
   investmentCard: {
-    backgroundColor: "#223544",
+    backgroundColor: "#22354488",
     borderWidth: getWidthPixel(1),
     borderColor: "#FFFFFF1A",
     borderRadius: getWidthPixel(10),
-    padding: getWidthPixel(16),
+    padding: getWidthPixel(10),
     marginBottom: getHeightPixel(12),
     direction: "rtl",
   },
@@ -524,38 +586,35 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: getHeightPixel(8),
+    // marginBottom: getHeightPixel(3),
   },
   cardAmount: {
     color: "#B0B0B0",
-    fontSize: getWidthPixel(18),
-    fontWeight: "bold",
-    fontFamily: Fonts.suisse.regular,
+    fontSize: normalized(18),
+    // fontFamily: Fonts.suisse.regular,
   },
   statusBadge: {
     paddingHorizontal: getWidthPixel(12),
     paddingVertical: getHeightPixel(4),
-    borderRadius: getWidthPixel(12),
+    borderRadius: getWidthPixel(15),
     borderWidth: getWidthPixel(1),
   },
   statusText: {
     color: "white",
-    fontSize: getWidthPixel(16),
-    fontWeight: "600",
-    fontFamily: Fonts.suisse.regular,
+    fontSize: normalized(16),
+    // fontFamily: Fonts.suisse.regular,
   },
   originalDeposit: {
     color: "white",
-    fontSize: getWidthPixel(14),
+    fontSize: normalized(14),
     marginBottom: getHeightPixel(8),
-    fontFamily: Fonts.suisse.regular,
+    // fontFamily: Fonts.suisse.regular,
   },
   profits: {
     color: "#4CAF50",
-    fontSize: getWidthPixel(14),
-    fontWeight: "600",
+    fontSize: normalized(14),
     marginBottom: getHeightPixel(12),
-    fontFamily: Fonts.suisse.regular,
+    // fontFamily: Fonts.suisse.regular,
   },
   progressBar: {
     height: getHeightPixel(8),
@@ -570,19 +629,30 @@ const styles = StyleSheet.create({
   },
   remainingTime: {
     color: "white",
-    fontSize: getWidthPixel(18),
+    fontSize: normalized(16),
     marginBottom: getHeightPixel(4),
-    fontFamily: Fonts.suisse.regular,
+    // fontFamily: Fonts.suisse.regular,
   },
   investmentDate: {
     color: "white",
-    fontSize: getWidthPixel(12),
+    fontSize: normalized(12),
     opacity: 0.7,
-    fontFamily: Fonts.suisse.regular,
+    // fontFamily: Fonts.suisse.regular,
   },
   sarImage: {
     width: getWidthPixel(19),
     height: getHeightPixel(22),
+    marginRight: getWidthPixel(5),
+  },
+  sarImageSmall: {
+    width: getWidthPixel(11),
+    height: getHeightPixel(13),
+    marginRight: getWidthPixel(4),
+  },
+  sarImageVerySmall: {
+    width: getWidthPixel(10),
+    height: getHeightPixel(12),
+    marginRight: getWidthPixel(4),
   },
   sarImageLarge: {
     width: getWidthPixel(27),
